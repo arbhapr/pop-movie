@@ -8,6 +8,9 @@
     --color-background-900: #212529;
     --color-red: #fa5252;
     --color-red-dark: #e03131;
+    --spacing-small: 0.8rem;
+    --spacing-medium: 1.6rem;
+    --spacing-large: 2.4rem;
 }
 
 * {
@@ -23,29 +26,28 @@ html {
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
         Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
     color: var(--color-text);
     background-color: var(--color-background-900);
-    padding: 2.4rem;
+    padding: var(--spacing-large);
 }
 
 /* ******* */
 
 .nav-bar {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
     height: 7.2rem;
-    padding: 0 3.2rem;
+    padding: 0 var(--spacing-large);
     background-color: var(--color-primary);
     border-radius: 0.9rem;
 }
 
 .main {
-    margin-top: 2.4rem;
-    height: calc(100vh - 7.2rem - 3 * 2.4rem);
+    margin-top: var(--spacing-large);
+    height: calc(100vh - 7.2rem - 3 * var(--spacing-large));
     display: flex;
-    gap: 2.4rem;
+    gap: var(--spacing-large);
     justify-content: center;
 }
 
@@ -63,13 +65,13 @@ body {
     text-transform: uppercase;
     font-size: 2rem;
     font-weight: 600;
-    margin: 4.8rem;
+    margin: var(--spacing-large);
 }
 
 .error {
     text-align: center;
     font-size: 2rem;
-    padding: 4.8rem;
+    padding: var(--spacing-large);
 }
 
 /* ******* */
@@ -77,7 +79,7 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: var(--spacing-small);
 }
 
 .logo span {
@@ -100,8 +102,6 @@ body {
     width: 40rem;
     transition: all 0.3s;
     color: var(--color-text);
-
-    /* background-color: var(--color-background-900); */
     background-color: var(--color-primary-light);
 }
 
@@ -138,8 +138,10 @@ body {
 
 .list {
     list-style: none;
-    padding: 0.8rem 0;
-    overflow: hidden;
+    padding: var(--spacing-small) 0;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .list-watched {
@@ -151,11 +153,10 @@ body {
     display: grid;
     grid-template-columns: 4rem 1fr;
     grid-template-rows: auto auto;
-    column-gap: 2.4rem;
+    column-gap: var(--spacing-medium);
     font-size: 1.6rem;
     align-items: center;
-
-    padding: 1.6rem 3.2rem;
+    padding: var(--spacing-medium) 3.2rem;
     border-bottom: 1px solid var(--color-background-100);
 }
 
@@ -180,19 +181,18 @@ body {
 .list div {
     display: flex;
     align-items: center;
-    gap: 2.4rem;
+    gap: var(--spacing-medium);
 }
 
 .list p {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: var(--spacing-small);
 }
 
 .btn-delete {
     position: absolute;
     right: 2.4rem;
-
     height: 1.8rem;
     aspect-ratio: 1;
     border-radius: 50%;
@@ -212,7 +212,7 @@ body {
 /* ******* */
 
 .summary {
-    padding: 2.2rem 3.2rem 1.8rem 3.2rem;
+    padding: var(--spacing-medium) 3.2rem 1.8rem 3.2rem;
     border-radius: 0.9rem;
     background-color: var(--color-background-100);
     box-shadow: 0 1.2rem 2.4rem rgba(0, 0, 0, 0.2);
@@ -227,7 +227,7 @@ body {
 .summary div {
     display: flex;
     align-items: center;
-    gap: 2.4rem;
+    gap: var(--spacing-medium);
     font-size: 1.6rem;
     font-weight: 600;
 }
@@ -235,7 +235,7 @@ body {
 .summary p {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: var(--spacing-small);
 }
 
 /* ******* */
@@ -253,7 +253,7 @@ body {
     padding: 4rem;
     display: flex;
     flex-direction: column;
-    gap: 1.6rem;
+    gap: var(--spacing-medium);
 }
 
 .details img {
@@ -262,7 +262,7 @@ body {
 
 .details-overview {
     width: 100%;
-    padding: 2.4rem 3rem;
+    padding: var(--spacing-medium) 3rem;
     background-color: var(--color-background-100);
     display: flex;
     flex-direction: column;
@@ -278,18 +278,18 @@ body {
 .details-overview p {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: var(--spacing-small);
 }
 
 .rating {
     background-color: var(--color-background-100);
     border-radius: 0.9rem;
-    padding: 2rem 2.4rem;
+    padding: var(--spacing-medium) 2.4rem;
     margin-bottom: 0.8rem;
     font-weight: 600;
     display: flex;
     flex-direction: column;
-    gap: 2.4rem;
+    gap: var(--spacing-medium);
 }
 
 .btn-add {
@@ -315,7 +315,7 @@ body {
     font-weight: 600;
     text-align: center;
     padding: 0.4rem;
-    margin-top: 2.4rem;
+    margin-top: var(--spacing-large);
 }
 
 .btn-back {
@@ -326,7 +326,6 @@ body {
     aspect-ratio: 1;
     border-radius: 50%;
     border: none;
-    /* background-color: var(--color-text); */
     background-color: #fff;
     color: var(--color-background-500);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
