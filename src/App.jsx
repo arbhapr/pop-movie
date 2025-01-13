@@ -1,5 +1,5 @@
-import { useState } from "react";
-import tempMovieData from "./json/movies.json";
+import { useEffect, useState } from "react";
+// import tempMovieData from "./json/movies.json";
 import tempWatchedData from "./json/watchedData.json";
 import { StarRating } from "./components";
 
@@ -52,7 +52,6 @@ function MovieItem({ movie }) {
                 </p>
             </div>
             <StarRating max={5} size={20} />
-            <StarRating />
         </li>
     );
 }
@@ -150,19 +149,59 @@ function BoxMovies({ element }) {
     );
 }
 
+function Loader() {
+    return (
+        <div className="loader">
+            <div className="loading-bar">
+                <div className="bar"></div>
+            </div>
+        </div>
+    );
+}
+
+const OMDB_APIKEY = "f255d928";
+const movieQuery = "123123"
 function App() {
-    const [movies] = useState(tempMovieData);
+    const [movies, setMovies] = useState([]);
     const [watched] = useState(tempWatchedData);
+    const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        async function fetchMovie() {
+            try {
+                setIsLoading(true);
+
+                const res = await fetch(
+                    `https://www.omdbapi.com/?apikey=${OMDB_APIKEY}&s=${movieQuery}`
+                );
+
+                const data = await res.json();
+                
+            if (data.Response === "False") throw new Error(data.Error);
+                
+                setMovies(data.Search);
+                setIsLoading(false);
+            } catch (err) {
+                console.log(err.message);
+            }
+        }
+
+        fetchMovie();
+    }, []);
+
     return (
         <>
-            {/* <NavBar movies={movies} /> */}
             <NavBar>
                 <Logo />
                 <Search />
                 <NumResult movies={movies} />
             </NavBar>
             <Main>
-                <BoxMovies element={<MovieList movies={movies} />} />
+                <BoxMovies
+                    element={
+                        isLoading ? <Loader /> : <MovieList movies={movies} />
+                    }
+                />
                 <BoxMovies
                     element={
                         <>
